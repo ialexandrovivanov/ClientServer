@@ -3,16 +3,16 @@ const express = require("express");
 const server = express();
 const CryptoJS = require("crypto-js");
 
-server.use(express.static(__dirname + "/public"));
+server.use(express.static(__dirname + "/dist"));
 server.use(express.static(__dirname + "/node_modules/socket.io-client/dist"));
 server.use(express.static(__dirname + "/node_modules/crypto-js"));
 server.use(express.json());
 
 server.get("/", async function(req, res) { 
 
-    const ip = req.headers['x-forwarded-for'] || req.socket.remoteAddress || null;
+    const ip = req.headers["x-forwarded-for"] || req.socket.remoteAddress || null;
     if(!ip) {
-        res.sendFile("unable.html");
+        res.sendFile(__dirname + "/unable.html");
         return; 
     }
 
@@ -31,7 +31,7 @@ server.listen(80, () => startMessage());
 
 async function sendAuth(ip, key) {
 
-    const keys = require('./privateKeys');
+    const keys = require(__dirname + "/privateKeys");
     const options = {
         autoConnect: true, 
         port: 3457,
@@ -50,8 +50,8 @@ function startMessage() {
 }
 
 async function generateClientKey() {
-    return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
-      var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+    return "xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx".replace(/[xy]/g, function(c) {
+      var r = Math.random() * 16 | 0, v = c == "x" ? r : (r & 0x3 | 0x8);
       return v.toString(16);
     });
 }
